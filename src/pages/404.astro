@@ -1,0 +1,99 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`404: Not Found | ${SITE_TITLE}`}
+      description={SITE_DESCRIPTION}
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <div class="error-container">
+        <h1 class="error-code">404</h1>
+        <div class="error-content">
+          <h2>Lost in Space?</h2>
+          <p>
+            The page you're looking for doesn't exist or has been moved to
+            another galaxy.
+          </p>
+          <a href="/" class="btn">Return to Earth</a>
+        </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  
+
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    padding: var(--space-3xl) 0;
+  }
+
+  .error-code {
+    font-size: clamp(8rem, 20vw, 12rem);
+    font-weight: 800;
+    line-height: 1;
+    margin: 0;
+    background: linear-gradient(
+      135deg,
+      var(--color-accent) 0%,
+      var(--color-text-subtle) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.8;
+  }
+
+  .error-content {
+    max-width: 500px;
+    margin-top: calc(-1 * var(--space-xl));
+  }
+
+  .error-content h2 {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+    color: var(--color-text);
+  }
+
+  .error-content p {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-sm) var(--space-2xl);
+    background: var(--color-accent);
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .btn:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    color: white;
+  }
+</style>

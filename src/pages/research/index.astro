@@ -1,0 +1,57 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Footer from "../../components/Footer.astro";
+import Header from "../../components/Header.astro";
+import { SITE_TITLE } from "../../consts";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead
+      title={`Research | ${SITE_TITLE}`}
+      description="Research and publications"
+    />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <section class="research-hero">
+        <h1>Research</h1>
+        <p class="subtitle">Publications, papers, and research projects</p>
+      </section>
+
+      <section class="research-content">
+        <p class="no-research">No research yet. Check back soon!</p>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .research-hero {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+
+    border-bottom: none;
+  }
+
+  .research-hero h1 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .subtitle {
+    color: var(--color-text-subtle);
+    font-size: 1.1rem;
+  }
+
+  .research-content {
+    padding: var(--space-xl) 0;
+  }
+
+  .no-research {
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+</style>

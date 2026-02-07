@@ -1,0 +1,139 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  url?: string;
+  tags?: string[];
+  image?: string;
+}
+
+const { title, description, url, tags = [], image } = Astro.props;
+---
+
+<article class="project-card">
+  {
+    image && (
+      <div class="project-image">
+        <img src={image} alt={title} loading="lazy" />
+      </div>
+    )
+  }
+  <div class="project-content">
+    <h3 class="project-title">
+      {
+        url ? (
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {title}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <>
+                <path d="M7 7h10v10" />
+                <path d="M7 17 17 7" />
+              </>
+            </svg>
+          </a>
+        ) : (
+          title
+        )
+      }
+    </h3>
+    <p class="project-description">{description}</p>
+    {
+      tags.length > 0 && (
+        <div class="project-tags">
+          {tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  .project-card {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition:
+      border-color var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  .project-card:hover {
+    border-color: var(--color-text-subtle);
+    transform: translateY(-4px);
+  }
+
+  .project-image {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+
+  .project-card:hover .project-image img {
+    transform: scale(1.05);
+  }
+
+  .project-content {
+    padding: var(--space-xl);
+  }
+
+  .project-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .project-title a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .project-title a:hover {
+    color: var(--color-accent);
+  }
+
+  .project-title svg {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all var(--transition-fast);
+  }
+
+  .project-card:hover .project-title svg {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+</style>

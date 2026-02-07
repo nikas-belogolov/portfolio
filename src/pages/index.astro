@@ -1,50 +1,201 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+
+// Get latest blog posts
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+// Featured projects from GitHub
+const projects = [
+  {
+    title: "AI Spaced Repetition",
+    description:
+      "An intelligent learning platform built with TanStack Start that uses the FSRS algorithm for scheduling and AI for interactive learning and automatic card generation.",
+    url: "https://ai-spaced-repetition.belogolovnikas.workers.dev/",
+    tags: ["TanStack Start", "AI SDK", "Dexie Cloud", "TypeScript"],
+  },
+  {
+    title: "Leak Detection System",
+    description:
+      "A comprehensive IoT solution for real-time water leak detection, using PyTorch for anomaly detection, RabbitMQ for messaging, and a Next.js dashboard.",
+    url: "https://github.com/nikas-belogolov/leak-detection-system",
+    tags: ["Next.js", "PyTorch", "RabbitMQ", "ESP32", "IoT"],
+  },
+  {
+    title: "ESP-BLE-Prov",
+    description:
+      "A WebBluetooth library for provisioning WiFi credentials to ESP32 devices directly from the browser.",
+    url: "https://github.com/nikas-belogolov/esp-ble-prov",
+    tags: ["JavaScript", "WebBluetooth", "ESP32", "IoT"],
+  },
+  {
+    title: "Terminal Chess",
+    description:
+      "A complete, functional chess game written in C, featuring a custom engine and terminal-based UI.",
+    url: "https://github.com/nikas-belogolov/terminal-chess",
+    tags: ["C", "Game Dev", "CLI", "Algorithms"],
+  },
+  {
+    title: "Plant Disease ML",
+    description:
+      "ML image classifier for plant diseases using neural networks with SHAP values for explainability.",
+    url: "https://github.com/nikas-belogolov/plant-disease-identification-ML",
+    tags: ["Python", "ML", "Neural Networks", "Explainable AI"],
+  },
+  {
+    title: "Garden Sketch",
+    description:
+      "A modern web application for planning and sketching garden layouts with an intuitive interface.",
+    url: "https://github.com/nikas-belogolov/garden-sketch",
+    tags: ["TypeScript", "Canvas", "Frontend Dev", "Garden Tech"],
+  },
+];
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <Hero
+        name="Nikas Belogolov"
+        tagline="Software Engineer & Creative Developer"
+        description="Building elegant solutions to complex problems. Passionate about web technologies, developer experience, and open source."
+      />
+
+      <!-- Projects Section -->
+      <section id="projects">
+        <div class="section-header">
+          <h2>Featured Projects</h2>
+          <p class="section-description">Some things I've built</p>
+        </div>
+        <div class="grid grid-3">
+          {projects.map((project) => <ProjectCard {...project} />)}
+        </div>
+      </section>
+
+      <!-- Blog Preview Section -->
+      {
+        posts.length > 0 && (
+          <section id="blog">
+            <div class="section-header">
+              <h2>Latest Posts</h2>
+              <a href="/blog" class="section-link">
+                View all →
+              </a>
+            </div>
+            <div class="posts-list">
+              {posts.map((post) => (
+                <a href={`/blog/${post.id}/`} class="post-item">
+                  <div class="post-info">
+                    <h3>{post.data.title}</h3>
+                    <p>{post.data.description}</p>
+                  </div>
+                  <FormattedDate date={post.data.pubDate} />
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+    </main>
+    <Footer />
+  </body>
 </html>
+
+<style>
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-xl);
+    gap: var(--space-lg);
+  }
+
+  .section-header h2 {
+    margin: 0;
+  }
+
+  .section-description {
+    color: var(--color-text-subtle);
+    margin: 0;
+  }
+
+  .section-link {
+    font-size: 0.9rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .section-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Blog posts list */
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .post-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .post-item:hover {
+    border-color: var(--color-text-subtle);
+    transform: translateX(4px);
+  }
+
+  .post-info h3 {
+    font-size: 1rem;
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+  }
+
+  .post-info p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .post-item time {
+    font-size: 0.8rem;
+    color: var(--color-text-subtle);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .post-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

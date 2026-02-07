@@ -1,64 +1,23 @@
-# Astro Starter Kit: Blog
+# Nikas Belogolov | Personal & Family Website
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/astro-blog-starter-template)
+Welcome to the digital home of Nikas Belogolov. This platform serves as a personal portfolio, a blog for engineering insights, and a central hub for family-related projects and research.
 
-![Astro Template Preview](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
+## 🚀 Overview
 
-<!-- dash-content-start -->
+This website is designed to showcase a diverse range of technical projects—from low-level IoT and systems programming to modern AI-driven web applications—while also providing a space for long-form thoughts and research publications.
 
-Create a blog with Astro and deploy it on Cloudflare Workers as a [static website](https://developers.cloudflare.com/workers/static-assets/).
+## 🛠️ Tech Stack
 
-Features:
+- **Framework**: [Astro](https://astro.build/) (v5.0+)
+- **Styling**: Vanilla CSS (Custom tokens & Design System)
+- **Deployment**: [Cloudflare Workers](https://workers.cloudflare.com/) / Pages
+- **Content**: MDX & Astro Content Collections
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-- ✅ Built-in Observability logging
+## 📂 Key Features
 
-<!-- dash-content-end -->
-
-## Getting Started
-
-Outside of this repo, you can start a new project with this template using [C3](https://developers.cloudflare.com/pages/get-started/c3/) (the `create-cloudflare` CLI):
-
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/astro-blog-starter-template
-```
-
-A live public deployment of this template is available at [https://astro-blog-starter-template.templates.workers.dev](https://astro-blog-starter-template.templates.workers.dev)
-
-## 🚀 Project Structure
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                           | Action                                           |
-| :-------------------------------- | :----------------------------------------------- |
-| `npm install`                     | Installs dependencies                            |
-| `npm run dev`                     | Starts local dev server at `localhost:4321`      |
-| `npm run build`                   | Build your production site to `./dist/`          |
-| `npm run preview`                 | Preview your build locally, before deploying     |
-| `npm run astro ...`               | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help`         | Get help using the Astro CLI                     |
-| `npm run build && npm run deploy` | Deploy your production site to Cloudflare        |
-| `npm wrangler tail`               | View real-time logs for all Workers              |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+- **Project Portfolio**: Showcasing major works like the AI Spaced Repetition platform, Leak Detection IoT systems, and high-performance C engines.
+- **Engineering Blog**: Technical deep-dives into software architecture, IoT provisioning, and machine learning.
+- **Research Section**: A dedicated space for academic publications and exploration papers.
+- **View Transitions**: Seamless navigation using Astro's `astro:transitions`.
+- **Responsive Design**: A mobile-first, dark-themed interface tailored for both high-end desktops and mobile accessibility.
