@@ -336,3 +336,7 @@ section + section {
 	from { opacity: 0; }
 	to { opacity: 1; }
 }
+
+.logo {
+  display: flex;
+}
